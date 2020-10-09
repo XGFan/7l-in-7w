@@ -1,9 +1,5 @@
 defmodule VideoStore.Concrete do
   import StateMachine.Behavior
-  def rent(video), do: fire(state_machine, video, :rent)
-  def return(video), do: fire(state_machine, video, :return)
-  def lost(video), do: fire(state_machine, video, :lose)
-
   def state_machine do
     [
       available: [
@@ -16,4 +12,9 @@ defmodule VideoStore.Concrete do
       lost: []
     ]
   end
+
+  def rent(video), do: fire(VideoStore.Concrete.state_machine, video, :rent)
+  def return(video), do: fire(VideoStore.Concrete.state_machine, video, :return)
+  def lost(video), do: fire(VideoStore.Concrete.state_machine, video, :lose)
+
 end

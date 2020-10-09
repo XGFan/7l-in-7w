@@ -1,8 +1,6 @@
 defmodule StateMachine.Behavior do
   def fire(context, event) do
-    #
-    IO.puts("hello,#{event[:do]}")
-    %{context | state: event[:do]} |> activate(event)
+    %{context | state: event[:to]} |> activate(event)
   end
 
   def fire(states, context, event_name) do
